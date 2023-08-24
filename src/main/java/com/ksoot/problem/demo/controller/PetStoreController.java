@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "Pet", description = "APIs. As per OpenAPI Spec")
+@Tag(name = "Pet", description = "management APIs. As per OpenAPI Spec")
 @RequestMapping("/api")
 public class PetStoreController {
 

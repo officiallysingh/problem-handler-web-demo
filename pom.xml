@@ -17,7 +17,7 @@
         <spring-cloud.version>2022.0.4</spring-cloud.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
         <swagger-request-validator-spring-webmvc.version>2.34.1</swagger-request-validator-spring-webmvc.version>
-        <spring-boot-problem-autoconfigure.version>0.0.1.SNAPSHOT</spring-boot-problem-autoconfigure.version>
+        <spring-boot-problem-handler.version>1.0</spring-boot-problem-handler.version>
     </properties>
 
     <dependencyManagement>
@@ -119,9 +119,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.ksoot.problem-handler</groupId>
-            <artifactId>spring-boot-problem-autoconfigure</artifactId>
-            <version>${spring-boot-problem-autoconfigure.version}</version>
+            <groupId>io.github.officiallysingh</groupId>
+            <artifactId>spring-boot-problem-handler</artifactId>
+            <version>${spring-boot-problem-handler.version}</version>
         </dependency>
     </dependencies>
 

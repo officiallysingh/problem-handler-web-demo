@@ -55,18 +55,18 @@ class DemoProblemController {
     }
 
     @Operation(
-        summary = "Throws unchecked exception with annotated cause",
+        summary = "Throws unchecked exception with nested cause",
         tags = {"Problem Demo"})
-    @RequestMapping(path = "/handler-throwable-annotated-cause", method = GET)
-    ResponseEntity<String> throwableAnnotatedCause() {
+    @RequestMapping(path = "/handler-throwable-nested", method = GET)
+    ResponseEntity<String> throwableNestedCause() {
         throw new IllegalArgumentException("expected", new IllegalStateException(new MyException()));
     }
 
     @Operation(
-        summary = "Throws unchecked exception with annotated reason",
+        summary = "Throws unchecked exception with nested cause, cause intern has another cause",
         tags = {"Problem Demo"})
-    @RequestMapping(path = "/handler-throwable-annotated-reason", method = GET)
-    ResponseEntity<String> throwableAnnotatedWithReason() {
+    @RequestMapping(path = "/handler-throwable-deep-nested", method = GET)
+    ResponseEntity<String> throwableDeepNestedCause() {
         throw new MyExceptionWithReason(new IllegalArgumentException("expected", new IllegalStateException()));
     }
 

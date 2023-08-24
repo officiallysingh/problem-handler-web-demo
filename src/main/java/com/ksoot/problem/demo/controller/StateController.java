@@ -54,8 +54,7 @@ public class StateController {
   @PostMapping("/states")
   public ResponseEntity<Void> createState(
       @Parameter(description = "Create State request", required = true) @RequestBody @Valid final CreateStateRequest request) {
-    State state = State.of(request.getCode(), request.getName(), request.getGstCode(), request.getGstin(),
-        request.getHsnCode(), request.isUT(), request.getNatureOfService());
+    State state = State.of(request.getCode(), request.getName(), request.getGstCode());
     state = this.stateRepository.save(state);
     return ResponseEntity.created(
             linkTo(methodOn(StateController.class).getState(state.id())).withSelfRel().toUri())
