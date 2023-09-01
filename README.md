@@ -40,3 +40,4 @@ and set the messages in [`errors.properties`](src/main/resources/i18n/errors.pro
 in [`application.properties`](src/main/resources/config/application.properties) to get Stacktrace and Cause in response.
 * Update [`help.html`](src/main/resources/static/problems/help.html) with any custom error description and follow the `type` 
 url in error response to see the error description on help page.
+* Follow http://localhost:8080/problems/help.html to see the description of errors.
