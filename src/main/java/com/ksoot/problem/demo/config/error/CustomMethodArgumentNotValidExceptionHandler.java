@@ -1,7 +1,7 @@
 package com.ksoot.problem.demo.config.error;
 
 import com.ksoot.problem.core.Problem;
-import com.ksoot.problem.core.ProblemUtils;
+import com.ksoot.problem.core.Problems;
 import com.ksoot.problem.spring.advice.validation.MethodArgumentNotValidAdviceTrait;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -12,7 +12,6 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.ArrayList;
@@ -29,9 +28,9 @@ class CustomMethodArgumentNotValidExceptionHandler implements MethodArgumentNotV
     List<String> violations = processBindingResult(exception.getBindingResult());
     final String errors = violations.stream()
         .collect(Collectors.joining(", "));
-    Problem problem = Problem.code(ProblemUtils.statusCode(HttpStatus.BAD_REQUEST)).title(HttpStatus.BAD_REQUEST.getReasonPhrase())
+    Problem problem = Problems.newInstance(HttpStatus.BAD_REQUEST)
         .detail(errors).build();
-    return create(exception, request, HttpStatus.BAD_REQUEST,
+    return toResponse(exception, request, HttpStatus.BAD_REQUEST,
         problem);
   }
 

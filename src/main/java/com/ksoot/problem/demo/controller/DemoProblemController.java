@@ -1,8 +1,10 @@
 package com.ksoot.problem.demo.controller;
 
 import com.ksoot.problem.core.ApplicationException;
+import com.ksoot.problem.core.ApplicationProblem;
+import com.ksoot.problem.core.MultiProblem;
 import com.ksoot.problem.core.Problem;
-import com.ksoot.problem.Problems;
+import com.ksoot.problem.core.Problems;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -151,12 +153,20 @@ class DemoProblemController {
         tags = {"Problem Demo"})
     @RequestMapping(path = "/throw-multiple-problems", method = GET)
     ResponseEntity<String> throwMultipleProblems() {
+        ApplicationException problemOne = Problems.newInstance("sample.problem.one").throwAbleChecked();
+        ApplicationProblem problemTwo = Problems.newInstance(AppErrors.REMOTE_HOST_NOT_AVAILABLE).detailArgs("http://some.remote.host.com").throwAble();
 
-        Problem problemOne = Problems.newInstance("sample.problem.one").get();
+        MultiProblem problems = Problems.ofExceptions(HttpStatus.MULTI_STATUS, problemOne, problemTwo);
 
-        Problem problemTwo = Problems.newInstance("sample.problem.two").get();
+        Problem problemThree = Problems.newInstance("3456", "Bad Request", "Invalid request received, Please retry with correct input")
+            .parameter("additional-attribute", "Some additional attribute").build();
+        problems.add(problemThree);
+        Exception exception = new IllegalStateException("Just for testing exception");
+        problems.add(exception);
 
-        throw Problems.throwAble(HttpStatus.MULTI_STATUS, problemOne, problemTwo);
+        Problem problem = Problems.newInstance("111", "Dummy", "Hardcode attributes broblem").build();
+        problems.add(problem);
+        throw problems;
     }
 
     @Operation(
@@ -164,7 +174,7 @@ class DemoProblemController {
         tags = {"Problem Demo"})
     @RequestMapping(path = "/throw-problem-with-additional-attribute", method = GET)
     ResponseEntity<String> throwProblemWithAdditionalAttribute()  {
-        Problem problem = Problem.code("3456").title("Bad Request").detail("Invalid request received, Please retry with correct input")
+        Problem problem = Problems.newInstance("3456", "Bad Request", "Invalid request received, Please retry with correct input")
                 .parameter("additional-attribute", "Some additional attribute").build();
         throw Problems.throwAble(HttpStatus.BAD_REQUEST, problem);
     }
