@@ -2,6 +2,16 @@
 
 ## Getting started
 
+### Docker compose
+If you have docker installed, then simply run the application in `docker` profile by passing `spring.profiles.active=docker`
+as run time argument from your IDE.
+Depending on your current working directory in IDE, you may need to change `spring.docker.compose.file=problem-handler-webflux-demo/compose.yml`
+to `spring.docker.compose.file=compose.yml` in [**`application-docker.properties`**](src/main/resources/config/application-docker.properties)
+
+Make sure the host ports mapped in [**`Docker compose file`**](compose.yml) are available or change the ports and
+do the respective changes in database configurations [**`application-docker.properties`**](src/main/resources/config/application-docker.properties)
+
+### Explicit Database configs
 Update following properties with your PostgresDB configurations
 
 ```properties
@@ -15,6 +25,7 @@ Update following properties with your MongoDB configurations
 spring.data.mongodb.uri=${MONGODB_URL:mongodb://localhost:27017/problem_web_db}
 ```
 
+## Run
 Run the main class [`ProblemWebDemoApplication`](src/main/java/com/ksoot/problem/demo/ProblemWebDemoApplication.java) 
 and access Swagger [`Swagger`](http://localhost:8080/swagger-ui.html) at http://localhost:8080/swagger-ui.html
 
@@ -28,7 +39,7 @@ Have a look at [`DemoProblemController`](src/main/java/com/ksoot/problem/demo/co
 * **State** and **Employee** management APIs are secured, so need to pass a JWT token in `Authorization` header.
 See the lock symbol against the API in Swagger
 
-**Click on Authorize button** to pass the JWT Token. Use following as JWT Token.
+**Click on Authorize button** to pass the JWT Token. Use any valid JWT Token.
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
