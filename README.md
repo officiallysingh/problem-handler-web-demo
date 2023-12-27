@@ -95,7 +95,7 @@ public static final class Address {
 ```
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/problems/handler-constraint-violation' \
   -H 'accept: */*' \
@@ -145,7 +145,7 @@ Response
 Make following request two time, 2nd time the exception will be thrown.
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/api/employees' \
   -H 'accept: */*' \
@@ -176,7 +176,7 @@ Response
 Make following request two time, 2nd time the exception will be thrown.
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/api/states' \
   -H 'accept: */*' \
@@ -206,7 +206,7 @@ Response
 #### Invalid Query parameters
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/problems/handler-invalid-query-strings?page=-1&size=1' \
   -H 'accept: */*'
@@ -236,7 +236,7 @@ Response
 #### Invalid format error
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/problems/handler-datetime-conversion?dateTime=2023-13-18T10%3A12%3A12Z' \
   -H 'accept: */*'
@@ -260,7 +260,7 @@ Response
 #### File upload max size exceeds error
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/problems/uploadfile' \
   -H 'accept: */*' \
@@ -286,7 +286,7 @@ Response
 #### Invalid Media type error
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/problems/handler-json-body' \
   -H 'accept: */*' \
@@ -313,7 +313,7 @@ Response
 #### Method not allowed error
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/problems/handler-datetime-conversion?dateTime=2023-04-18T10%3A12%3A12Z' \
   -H 'accept: */*'
@@ -343,7 +343,7 @@ throw new IllegalArgumentException("Expected argument invalid", new IllegalState
 ```
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/problems/handler-throwable' \
   -H 'accept: */*'
@@ -373,7 +373,7 @@ throw Problems.throwAble(HttpStatus.BAD_REQUEST, problem);
 ```
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/problems/throw-problem-with-additional-attribute' \
   -H 'accept: */*'
@@ -415,7 +415,7 @@ throw problems;
 ```
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/problems/throw-multiple-problems' \
   -H 'accept: */*'
@@ -466,7 +466,7 @@ Response
 ### OpenAPI Specification violation error
 
 Request
-```text
+```curl
 curl -X 'POST' \
   'http://localhost:8080/api/pets' \
   -H 'accept: */*' \
@@ -506,7 +506,7 @@ Response
 ### Security error
 
 Request
-```text
+```curl
 curl -X 'GET' \
   'http://localhost:8080/api/employees/1' \
   -H 'accept: */*'
