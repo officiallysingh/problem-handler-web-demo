@@ -17,7 +17,7 @@
         <spring-cloud.version>2022.0.4</spring-cloud.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
         <swagger-request-validator-spring-webmvc.version>2.34.1</swagger-request-validator-spring-webmvc.version>
-        <spring-boot-problem-handler.version>1.6</spring-boot-problem-handler.version>
+        <spring-boot-problem-handler.version>1.7</spring-boot-problem-handler.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
