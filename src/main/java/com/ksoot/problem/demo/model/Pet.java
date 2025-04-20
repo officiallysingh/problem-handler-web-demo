@@ -17,7 +17,7 @@ public class Pet {
 
   private Status status;
 
-  public static enum Status {
+  public enum Status {
     AVAILABLE, PENDING, SOLD;
   }
 }
